@@ -59,7 +59,7 @@ Il dataset giri descrive delle informazioni di carattere quantitativo riguardant
 Il dataset Vincitori2.0 contiene alcune informazioni riguardanti i vincitori dei Granpremi nelle diverse stagioni.
 <br>
 Per semplicità si è deciso di rinominare le nazionalità, il codice del circuito e la casa costruttrice con un numero evidenziati con un file apposito.
-Nomenclatura <- read.csv("C:/Users/Giovanni/Desktop/Prova/Nomenclatura.txt")
+Nomenclatura <- read.csv("Nomenclatura.txt")
 
 * *Stagione* : anno del campionato cui si riferiscono i dati.
 * *Nome Circuito* : nome per esteso del circuito.
@@ -90,7 +90,7 @@ library(knitr)
 Per poter rispondere a questa domanda va caricato il dataset piloti.
 <br>
 ```{r}
-piloti <- read_excel("C:/Users/Giovanni/Desktop/Motogp/Dataset_piloti.xlsx")
+piloti <- read_excel("Dataset_piloti.xlsx")
 ```
 Successivamente vanno sostituite le sigle presenti (NC=Not classified NL=Not finished first lap NP=Not started race re-start N2=Not finished first lap race re-start EX=Excluded NS=Not Started DS=Disqualified) con caselle con valore 0. Si precisa che chi, per qualsiasi motivo non termina la gara, ottenendo 0 punti in campionato, è come se non avesse partecipato alla gara.
 ```{r}
@@ -148,6 +148,7 @@ Dal risultato del coefficiente di correlazione (pari a 0.52)  si evidenzia che c
 prova_qualgara=prova%>%filter(prova$Rider=="ROSSI"|prova$Rider=="IANNONE"|prova$Rider=="PEDROSA"|prova$Rider=="LORENZO"|prova$Rider=="MARQUEZ"|prova$Rider=="CRUTCHLOW" | prova$Rider=="ZARCO"| prova$Rider=="ESPARGARO"| prova$Rider=="VIÑALES")
 prova_qualgara=prova_qualgara%>%filter(prova_qualgara$Qualifica !=0)
 diff_qualgara1=mutate(prova_qualgara,diff_qualgara=(prova_qualgara$Qualifica-prova_qualgara$Risultato) )
+
 #posizione media della qualifica
 aggregate(diff_qualgara1$Qualifica~diff_qualgara1$Rider, data=diff_qualgara1, FUN =mean)
 #risultato medio
@@ -163,7 +164,7 @@ Si pensa che il pilota che effettua la pole position sia quello che abbia maggio
 
 ```{r}
 #carichiamo il dataset giri
-giri <- read_excel("C:/Users/Giovanni/Desktop/Motogp/Dataset_giri.xlsx")
+giri <- read_excel("Dataset_giri.xlsx")
 giri[is.na(giri)]<-0
 
 #Verifica della chiave primaria
@@ -534,7 +535,7 @@ ggplot()+
 <br>
 Per poter rispondere alla domanda va caricato il dataset vincitori2.0.
 ```{r}
-vincitori2 <- read_excel("C:/Users/Giovanni/Desktop/Motogp/Dataset_vincitori2.0.xlsx")
+vincitori2 <- read_excel("Dataset_vincitori2.0.xlsx")
 ```
 <br>
 Nel dataset viene escluso il nome esteso del circuito (colonna 2) che ripete l'informazione contenuta nella sigla univoca del circuito (colonna 3).
@@ -639,3 +640,4 @@ Pertanto,
 ```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
 knitr::include_graphics("piloti.png")
 ```
+
