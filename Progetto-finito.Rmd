@@ -223,14 +223,6 @@ Si noti che considerati i 94 piloti che hanno partecipato ad almeno una gara in 
 
 ```{r}
 freq2=df_pil_tot3%>%filter(df_pil_tot3$freq>0)
-ggplot(freq2)+
-  geom_bar( aes(x=freq2$N.Vittorie),stat="count")+
-  coord_flip()+
-  ggtitle("N. piloti in base alle frequenze di vittorie su gare disputate")+
-  scale_x_continuous("Frequenze", breaks=seq(0,50,by=2))+
-  theme_light()+
-  ylab("N. piloti")
-
 ggplot(freq2,aes(y=freq2$N.Vittorie, x=freq2$`N.gare disputate`, col=freq2$Rider))+
   geom_point()+
   scale_x_continuous("N. gare disputate", breaks=seq(0,270, by=20))+
@@ -239,7 +231,7 @@ ggplot(freq2,aes(y=freq2$N.Vittorie, x=freq2$`N.gare disputate`, col=freq2$Rider
   theme(legend.position = "bottom")+
   guides(colour = guide_legend(nrow = 4, override.aes = list(size = 4)))+
   labs(colour= "Pilota")+
-  labs(title="N. Vittorie VS N. gare disputate")+  
+  labs(title="Frequenza di vittoria")+  
   ggrepel::geom_label_repel(aes(label=freq),freq2,nudge_x = 0, alpha = 1)+
   ggrepel::geom_label_repel(aes(label=Rider),freq2,nudge_y = 3, alpha = 0.5)
 ```
@@ -437,7 +429,7 @@ ggplot(giri_big,aes(x=giri_big$Anno,y=giri_big$`Giri in prima posizione`, col=gi
    ggrepel::geom_label_repel(aes(label=giri_big$Posizione),giri_big,nudge_y = 2, alpha = 0.6)
 ```
 <br>
-Tra i big si nota che chi effettua tanti giri in prima posizione tendenzialmente ricopre una posizione prestigiosa in campionato.
+Tra i big si evince che chi effettua tanti giri in prima posizione tendenzialmente ricopre una posizione prestigiosa in campionato.
 
 ```{r veloci tenendo conto della posizione in campionato}
 ggplot(giri_big,aes(x=giri_big$Anno,y=giri_big$`Giri veloci`, col=giri_big$Rider))+
@@ -450,7 +442,7 @@ ggplot(giri_big,aes(x=giri_big$Anno,y=giri_big$`Giri veloci`, col=giri_big$Rider
    ggrepel::geom_label_repel(aes(label=giri_big$Posizione),giri_big,nudge_y = 0.5, alpha = 0.6)
 ```
 <br>
-Attraverso questo grafico viene dimostrata la tesi che il numero di giri veloci non è legata alla posizione in classifica: infatti si può notare che nel 2008 Stoner arrivato secondo in classifica campionato, ha fatto quasi il doppio (9) di giri veloci rispetto a Rossi (5 giri veloci) che ha vinto il campionato.
+Attraverso il grafico viene dimostrata la tesi che il numero di giri veloci non è legata alla posizione in classifica: infatti si può notare che nel 2008 Stoner arrivato secondo in classifica campionato, ha fatto quasi il doppio (9) di giri veloci rispetto a Rossi (5 giri veloci) che ha vinto il campionato.
 
 ```{r N.Vittorie tenendo conto della posizione in campionato}
 ggplot(giri_big,aes(x=giri_big$Anno,y=giri_big$`N. Vittorie`, col=giri_big$Rider))+
@@ -619,7 +611,7 @@ ggplot()+
   labs(title="Andamento vittorie per circuito", subtitle="Blu=Yamaha, Rosso=Ducati, Verde=Suzuki, Nero=Honda")
 ```
 <br>
-Si nota che in certe piste c'è un predominio di una determinata casa costruttrice che continua da diverse stagioni, come si può notare per quanto riguarda Honda nel circuito 3 e 9. Questo predominio di una scuderia può essere legato a molti fattori, quali:
+Osservando i dati emerge che in certe piste c'è un predominio di una determinata casa costruttrice che continua da diverse stagioni, come si può notare per quanto riguarda Honda nel circuito 3 e 9. Questo predominio di una scuderia può essere legato a molti fattori, quali:
 <br>
 1. Le caratteristiche del tracciato (es.la pista ha lunghi rettilinei, curve particolari, o sul medesimo lato).
 <br>
